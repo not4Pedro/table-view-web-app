@@ -30,6 +30,8 @@ def get_cloud_vendors():
         cursor.execute("SELECT * FROM cloud_vendors")
         vendors = cursor.fetchall()
 
+        if cursor.description is None:
+            return [], []
         column_names = [desc[0] for desc in cursor.description] if vendors else []
         return vendors, column_names
     except Exception as e:
